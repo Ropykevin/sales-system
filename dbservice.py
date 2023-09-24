@@ -21,14 +21,64 @@ conn = psycopg2.connect(
 database="myduka_class", user='postgres', password='Kevin254!', 
 host='localhost', port= '5432')
 # FUNTCTION
-def get_data(b):
+def get_data(table_name):
    cursor = conn.cursor()
-   cursor.execute(f"select * from  {b}")
+   cursor.execute(f"select * from  {table_name}")
    list_of_records=cursor.fetchall()
    return list_of_records
     
-prods=get_data("products")
-print(prods)
+products=get_data("products")
+print(products)
 
 sales=get_data("sales")
 print(sales)
+
+#  ONE TABLE
+def insert_data_to_table(product_name, buying_price, selling_price, stock_quantity):
+    try:
+        
+        cursor = conn.cursor()
+
+        insert_query = """
+            INSERT INTO products (product_name, buying_price, selling_price, stock_quantity)
+            VALUES (%s, %s, %s, %s)
+        """
+        record_to_insert = (product_name, buying_price,selling_price, stock_quantity)
+
+        cursor.execute(insert_query, record_to_insert)
+        conn.commit()
+        print("Record inserted successfully")
+
+    except (Exception, psycopg2.Error) as error:
+        print("Error while inserting data:", error)
+
+    finally:
+        if conn:
+            cursor.close()
+            conn.close()
+            print("PostgreSQL connection is closed")
+
+insert_data_to_table('cute', 9000.0, 10000.0, 400)
+
+   # multible table
+
+def insert_into(table_name, values, columns):
+    try:
+        cursor = conn.cursor()
+        placeholders = ', '.join(['%s'] * len(values))
+        insert_query = f"INSERT INTO {table_name} ({', '.join(columns)}) VALUES ({placeholders})"
+        cursor.execute(insert_query, values)
+        conn.commit()
+        print(f"Data inserted into {table_name} successfully")
+    except (Exception, psycopg2.Error) as error:
+        print(f"Failed to insert record into {table_name}: {error}")
+    finally:
+        if conn:
+            conn.close()
+
+values = ('soda', 500, 700, 100)
+columns = ('product_name', 'buying_price', 'selling_price', 'stock_quantity')
+
+insert_into('products', values, columns)
+conn.close()
+
