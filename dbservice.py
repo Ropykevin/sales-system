@@ -82,3 +82,21 @@ columns = ('product_name', 'buying_price', 'selling_price', 'stock_quantity')
 insert_into('products', values, columns)
 conn.close()
 
+
+def remaining_stock():
+    cursor = conn.cursor()
+    # Query to fetch the remaining stock for each product
+    cursor.execute("update products set stock_quantity=50")
+    cursor.execute("SELECT product_name, stock_quantity FROM products")
+    cursor.execute("SELECT sale_quantity, product_id FROM sales")
+
+    # Fetch all rows and create a dictionary with product_name as key and remaining stock as value
+    product_stock_dict = {product_name: stock_quantity for product_name, stock_quantity in cursor.fetchall()}
+    sales_quantity_dict= {product_id: sale_quantity for product_id,sale_quantity in cursor.fetchall}
+    remaining_stock_dict=product_stock_dict-sales_quantity_dict
+
+    # Close the database connection
+    conn.close()
+
+    return remaining_stock_dict
+

@@ -1,7 +1,7 @@
 from database_functions import insert_into
 
-values = (20, 500)
-columns = ('product_id','quantity')
+values = (20, 500,'now')
+columns = ('product_id','quantity','created_at')
 
 insert_into('sales', values, columns)
 
