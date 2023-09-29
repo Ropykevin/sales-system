@@ -31,8 +31,29 @@
       </nav>
     <div class="container">
 
-      <h1>landing_page</h1>
-
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Product_Id</th>
+            <th scope="col">product_name</th>
+            <th scope="col">buying_price</th>
+            <th scope="col">selling_price</th>
+            <th scope="col">stock_quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for myproduct in myproducts%}
+          <tr>
+            <td>{{myproduct[0]}}</td>
+            <td>{{myproduct[1]}}</td>
+            <td>{{myproduct[2]}}</td>
+            <td>{{myproduct[3]}}</td>
+            <td>{{myproduct[4]}}</td>
+          </tr>
+          {% endfor %}
+         
+        </tbody>
+      </table>
 
     </div>
    
