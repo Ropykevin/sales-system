@@ -14,6 +14,7 @@ def get_data(table_name):
 
 def insert_products(conn):
     try:
+        
         cursor = conn.cursor()
         product_name = request.form["product_name"]
         buying_price = request.form["buying_price"]
