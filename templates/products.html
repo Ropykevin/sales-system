@@ -1,15 +1,16 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sales System</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="stylesheet" href="/static/css/jquery.css">
-
 </head>
 
 <body>
@@ -31,71 +32,97 @@
           <li class="nav-item">
             <a class="nav-link" href="/sales">Sales</a>
           </li>
-
         </ul>
       </div>
     </div>
   </nav>
   <div class="container">
-    <h1 class="mt-4">Insert Products</h1>
-    <form method="POST" action="/products" class="mt-4">
-      <div class="mb-3">
-        <label for="product_name" class="form-label">Product Name</label>
-        <input type="text" name="product_name" id="product_name" class="form-control" required>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      Add Product
+    </button>
+    <!-- Bootstrap Modal for Adding Products -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form action="/products" method="post">
+              <div class="mb-3">
+                <label for="product_name" class="form-label">Product Name</label>
+                <input type="text" class="form-control" id="product_name" name="product_name">
+              </div>
+              <div class="mb-3">
+                <label for="buying_price" class="form-label">Buying Price</label>
+                <input type="text" class="form-control" id="buying_price" name="buying_price">
+              </div>
+              <div class="mb-3">
+                <label for="selling_price" class="form-label">Selling Price</label>
+                <input type="text" class="form-control" id="selling_price" name="selling_price">
+              </div>
+              <div class="mb-3">
+                <label for="stock_quantity" class="form-label">Stock Quantity</label>
+                <input type="text" class="form-control" id="stock_quantity" name="stock_quantity">
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Understood</button>
+          </div>
+        </div>
       </div>
-
-      <div class="mb-3">
-        <label for="buying_price" class="form-label">Buying Price</label>
-        <input type="number" name="buying_price" id="buying_price" class="form-control" required>
-      </div>
-      <div class="mb-3">
-        <label for="selling_price" class="form-label">Selling price</label>
-        <input type="number" name="selling_price" id="selling_price" class="form-control" required>
-      </div>
-
-      <div class="mb-3">
-        <label for="stock_quantity" class="form-label">Stock Quantity</label>
-        <input type="number" name="stock_quantity" id="stock_quantity" class="form-control">
-      </div>
-
-      <button type="submit" class="btn btn-primary">Save</button>
-    </form>
-
-
+  
+    </div>
+    <!-- Display Products in a Table -->
     <table class="table" id="myTable">
       <thead>
         <tr>
-          <th scope="col">Product_Id</th>
-          <th scope="col">product_name</th>
-          <th scope="col">buying_price</th>
-          <th scope="col">selling_price</th>
-          <th scope="col">stock_quantity</th>
+          <th scope="col">Product ID</th>
+          <th scope="col">Product Name</th>
+          <th scope="col">Buying Price</th>
+          <th scope="col">Selling Price</th>
+          <th scope="col">Stock Quantity</th>
         </tr>
       </thead>
       <tbody>
-        {% for myproduct in myproducts%}
+        {% for myproduct in myproducts %}
         <tr>
-          <td>{{myproduct[0]}}</td>
-          <td>{{myproduct[1]}}</td>
-          <td>{{myproduct[2]}}</td>
-          <td>{{myproduct[3]}}</td>
-          <td>{{myproduct[4]}}</td>
+          <td>{{ myproduct[0] }}</td>
+          <td>{{ myproduct[1] }}</td>
+          <td>{{ myproduct[2] }}</td>
+          <td>{{ myproduct[3] }}</td>
+          <td>{{ myproduct[4] }}</td>
         </tr>
         {% endfor %}
-
       </tbody>
     </table>
-
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
+  <script>
+    const myModal = document.getElementById('myModal')
+    const myInput = document.getElementById('myInput')
+
+    myModal.addEventListener('shown.bs.modal', () => {
+      myInput.focus()
+    })
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
     integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
   <script src="/static/javascript/jquery.js"></script>
+
   <script>
+    // datatable
     let table = new DataTable('#myTable');
+  </script>
+
   </script>
 </body>
 

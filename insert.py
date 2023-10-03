@@ -1,18 +1,18 @@
 import psycopg2
-
-def insert_into_table(table, values):
+conn = psycopg2.connect(user="postgres",
+                 password="Kevin254!",
+                 host="127.0.0.1",
+                 port="5432",
+                 database="myduka_class")
+def insert_into_products(values):
     try:
-        conn = psycopg2.connect(user="postgres",
-                                      password="Kevin254!",
-                                      host="127.0.0.1",
-                                      port="5432",
-                                      database="myduka_class")
         cursor = conn.cursor()
+        columns="(product_name,buying_price,selling_price,stock_quantity)"
+        values= "(%s, %s,%s, %s)"
+        insert_query = f"INSERT INTO products{columns} {values}"
+        # record_to_insert = values 
 
-        insert_query = f"INSERT INTO {table} VALUES (%s, %s, %s, %s)"
-        record_to_insert = values 
-
-        cursor.execute(insert_query, record_to_insert)
+        cursor.execute(insert_query)
 
         conn.commit()
         count = cursor.rowcount
@@ -27,4 +27,5 @@ def insert_into_table(table, values):
             conn.close()
             print("PostgreSQL connection is closed")
 
-pr = insert_into_table("sales", ('kiwi', 9000, 10000, 400))
+values=('kiwi', 9000, 10000, 400)
+pr = insert_into_products(values)
