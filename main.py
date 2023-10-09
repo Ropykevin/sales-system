@@ -1,10 +1,13 @@
-from flask import Flask, render_template, request, redirect, session,flash
+from flask import Flask, render_template, request, redirect, session,flash, url_for
 from dbservice import get_data, insert_products, insert_sale, calculate_profit, create_user, check_email_password_match,check_email_exists
 
 app = Flask(__name__)
 app.secret_key = "Kevin254!"
 
 
+# def login_check():
+#     if session['email']!=None:
+#         return redirect(url_for("dashboard"))
 # Route for the homepage
 @app.route("/")
 def sales_system():
@@ -15,6 +18,7 @@ def sales_system():
 
 @app.route("/dashboard")
 def dashboard():
+    # login_check()
     if "user_id" not in session:
         return redirect("/login")
     dates = []
@@ -39,6 +43,8 @@ def add_products():
 
 @app.route("/products")
 def products():
+    # login_check()
+
     if "user_id" not in session:
         return redirect("/login")
     products_data = get_data("products")
@@ -49,6 +55,8 @@ def products():
 
 @app.route("/sales", methods=["GET", "POST"])
 def sales():
+    # login_check()
+
     if "user_id" not in session:
         return redirect("/login")
     sales_data = get_data('sales')
@@ -66,9 +74,9 @@ def add_sales():
     return redirect('/sales')
 
 
-@app.route("/register", methods=["POST"])
+@app.route("/register", methods=["POST","GET"])
 def register():
-    full_name = request.form["name"]
+    full_name = request.form["full_name"]
     email = request.form["email"]
     password = request.form["pass"]
     create_user(full_name, email, password)
@@ -86,7 +94,7 @@ def login():
     if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
-        user_id = check_email_password_match(email, password)
+        user_id=check_email_password_match(email, password)
 
         if user_id:
             session["user_id"] = user_id
@@ -100,7 +108,7 @@ def login():
 @app.route("/logout")
 def logout():
     session.pop("user_id", None)
-    return redirect('/')
+    return redirect('/login')
 
 
 if __name__ == "__main__":

@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>ropykevin Login/Register Snippet</title>
+    <title>Ropykevin Sales System</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
-<body style="font-family: 'Poppins', sans-serif; font-weight: 300; line-height: 1.7; color: #ffeba7; background-color: #1f2029;">
+
+<body
+    style="font-family: 'Poppins', sans-serif; font-weight: 300; line-height: 1.7; color: #ffeba7; background-color: #1f2029;">
     <div class="section">
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container">
                 <a class="navbar-brand" href="/">Sales System</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -46,16 +50,17 @@
                                             <h4 class="mb-4 pb-3">Log In</h4>
                                             <form action="/login" method="post">
                                                 <div class="form-group">
-                                                    <input type="email" class="form-control" placeholder="Email" name="email">
-                                                    <i class="input-icon uil uil-at"></i>
+                                                    <input type="email" class="form-control" placeholder="Email"
+                                                        name="email" required>
                                                 </div>
                                                 <div class="form-group mt-2">
-                                                    <input type="password" class="form-control" placeholder="Password" name="password">
-                                                    <i class="input-icon uil uil-lock-alt"></i>
+                                                    <input type="password" class="form-control" placeholder="Password"
+                                                        name="password" required>
                                                 </div>
                                                 <button type="submit" class="btn mt-4">Login</button>
                                             </form>
-                                            <p class="mb-0 mt-4 text-center"><a href="#" class="link">Forgot your password?</a></p>
+                                            <p class="mb-0 mt-4 text-center"><a href="#" class="link">Forgot your
+                                                    password?</a></p>
                                         </div>
                                     </div>
                                 </div>
@@ -65,18 +70,19 @@
                                             <form action="/register" method="post">
                                                 <h4 class="mb-3 pb-3">Register</h4>
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" placeholder="Full Name" name="name" >
-                                                    <i class="input-icon uil uil-user"></i>
+                                                    <input type="text" class="form-control" placeholder="Full Name"
+                                                        name="full_name" required>
                                                 </div>
                                                 <div class="form-group mt-2">
-                                                    <input type="email" class="form-control" placeholder="Email" name="email" >
-                                                    <i class="input-icon uil uil-at"></i>
+                                                    <input type="email" class="form-control" placeholder="Email"
+                                                        name="email" required>
                                                 </div>
                                                 <div class="form-group mt-2">
-                                                    <input type="password" class="form-control" placeholder="Password" name="pass" >
-                                                    <i class="input-icon uil uil-lock-alt"></i>
+                                                    <input type="password" class="form-control" placeholder="Password"
+                                                        name="pass" required>
                                                 </div>
-                                                <button style="background-color: #ffeba7;" type="submit" class="btn mt-4" name="send">Register</button>
+                                                <button style="background-color: #ffeba7;" type="submit"
+                                                    class="btn mt-4" name="send">Register</button>
                                             </form>
                                         </div>
                                     </div>
@@ -88,6 +94,9 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

@@ -27,13 +27,13 @@ def insert_sale(values):
 
 def calculate_profit():
     cursor = conn.cursor()
-    run_query = """SELECT DATE(created_at) AS mydate,
+    profit_query = """SELECT DATE(created_at) AS mydate,
     SUM((selling_price - buying_price) * sales.quantity) AS profit 
     FROM sales 
     JOIN products ON products.product_id = sales.product_id 
     GROUP BY mydate 
     ORDER BY mydate;"""
-    cursor.execute(run_query)
+    cursor.execute(profit_query)
     list_records = cursor.fetchall()
     return (list_records)
 
@@ -41,7 +41,7 @@ def calculate_profit():
 def check_email_exists(email):
     cursor = conn.cursor()
     query = "SELECT EXISTS(SELECT 1 FROM users WHERE email = %s)"
-    cursor.execute(query, (email))
+    cursor.execute(query, (email,))
     exists = cursor.fetchone()[0]
     return exists
 
