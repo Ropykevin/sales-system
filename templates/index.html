@@ -1,125 +1,271 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>RK Sales System - Login/Register</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/static/css/style.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <style>
-    .carousel-item {
-      position: relative;
-    }
-
-    .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(0, 0, 0, 0.5);
-      color: white;
-      padding: 20px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .overlay h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-    }
-
-    .overlay p {
-      font-size: 1.25rem;
-    }
-
-    .overlay a.btn {
-      margin-top: 20px;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/static/css/land.css">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+  <link rel="stylesheet"
+    href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
+    integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
+  <link rel="stylesgeet" href="https://rawgit.com/Tech-camptimofficial/material-kit/master/assets/css/material-kit.css">
 </head>
 
-<body>
-  <div class="container">
-    <div class="section">
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/">Sales System</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/products">Products</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/sales">Sales</a>
-              </li>
-              {% if not is_logged_in %}
-              <li class="nav-item">
-                <a class="nav-link" href="/login">Login</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/login">Register</a>
-              </li>
-              {% else %}
-              <li class="nav-item">
-                <a class="nav-link" href="/logout">Logout</a>
-              </li>
-              {% endif %}
-            </ul>
-          </div>
-        </div>
-      </nav>
+<body class="landing-page ">
+  <nav class="navbar navbar-color-on-scroll navbar-transparent    fixed-top  navbar-expand-lg " color-on-scroll="100"
+    id="sectionsNav">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Sales System</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/dashboard">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/products">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/sales">Sales</a>
+          </li>
+          {% if not is_logged_in %}
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Register</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
     </div>
+  </nav>
+  <div class="page-header header-filter" data-parallax="true"
+    style=" background-image: url('https://images.unsplash.com/photo-1531449862596-16e4c62e2b10?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=7261ec0c2507c69c76ec73a01162637b&auto=format&fit=crop&w=750&q=80'); ">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h1 class="title">Revolutionize Your Workflow With Us.</h1>
+          <h4>Our system is designed to transform and modernize your sales and inventory management.</h4>
+          <br>
+          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"
+            class="btn btn-danger btn-raised btn-lg">
+            <i class="fa fa-play"></i> Watch video
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main main-raised">
+    <div class="container">
+      <div class="section text-center">
+        <div class="row">
+          <div class="col-md-8 ml-auto mr-auto">
+            <h2 class="title">Our&apos; Vision</h2>
+            <h5 class="description">"Our vision is to lead the way in offering revolutionary sales solutions that
+              empower businesses to achieve
+              extraordinary growth, profitability, and customer satisfaction through the use of advanced technology and
+              exceptional
+              customer experiences."</h5>
+          </div>
+        </div>
 
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="/static/images/point-of-sale.jpg" class="d-block w-100" alt="...">
-          <div class="jumbotron overlay">
-            <h1>Welcome to the RK Sales System</h1>
-            <p>At RK Sales, we are dedicated to providing you with a seamless and efficient experience that goes beyond
-              your expectations.</p>
-            <p><a class="btn btn-primary btn-lg" href="/login" role="button">Get Started</a></p>
+        <div class="features">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="info">
+                <div class="icon icon-info">
+                  <i class="material-icons">chat</i>
+                </div>
+                <h4 class="info-title">"Chat at no cost"</h4>
+                <p>"Engage in cost-free chat within our system."</p>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="info">
+                <div class="icon icon-success">
+                  <i class="material-icons">verified_user</i>
+                </div>
+                <h4 class="info-title">Verified Users</h4>
+                <p>"Connect with confidence and trust in our verified users."
+                </p>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="info">
+                <div class="icon icon-danger">
+                  <i class="material-icons">fingerprint</i>
+                </div>
+                <h4 class="info-title">"Security measures within the system."</h4>
+                <p>"Your security is our priority. Our system is fortified with state-of-the-art security measures to
+                  safeguard your data
+                  and privacy."</p>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="carousel-item">
-          <img src="/static/images/interface2.png" class="d-block w-100" alt="...">
-          <div class="jumbotron overlay">
-            <h1>RK Sales System where success is a top priority</h1>
-            <p>Our system is designed to empower you with the knowledge and tools you need to succeed.</p>
-            <p><a class="btn btn-primary btn-lg" href="/login" role="button">Get Started</a></p>
+      </div>
+
+      <div class="section text-center">
+        <h2 class="title">Here is our team</h2>
+        <div class="team">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="team-player">
+                <div class="card card-plain">
+                  <div class="col-md-6 ml-auto mr-auto">
+                    <img src=""
+                      alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
+
+                  </div>
+                  <h4 class="card-title">Ken Kivuti <br>
+                    <small class="card-description text-muted">System Designer</small>
+                  </h4>
+
+                  <div class="card-body">
+                    <p class="card-description">"Meet our sales system designer – the Tech-camp force behind your
+                      success, turning concepts into profit."
+                      <a href="#">links</a>.
+                    </p>
+                  </div>
+                  <div class="card-footer justify-content-center">
+                    <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-twitter"></i></a>
+                    <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-instagram"></i></a>
+                    <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-facebook-square"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="team-player">
+                <div class="card card-plain">
+                  <div class="col-md-6 ml-auto mr-auto">
+                    <img
+                      src=""
+                      alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
+
+                  </div>
+                  <h4 class="card-title">Ropy Kevin<br>
+                    <small class="card-description text-muted">System Developer</small>
+                  </h4>
+
+                  <div class="card-body">
+                    <p class="card-description">"Meet the mastermind behind our sales system – our brilliant developer
+                      who's shaping the future of your success.
+                      <a href="#">links</a>
+                    </p>
+                  </div>
+                  <div class="card-footer justify-content-center">
+                    <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-twitter"></i></a>
+                    <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="team-player">
+                <div class="card card-plain">
+                  <div class="col-md-6 ml-auto mr-auto">
+                    <img
+                      src=""
+                      alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
+
+                  </div>
+                  <h4 class="card-title">Purity Makena<br>
+                    <small class="card-description text-muted">Customer Care</small>
+                  </h4>
+
+                  <div class="card-body">
+                    <p class="card-description">"Our commitment to exceptional customer care sets us apart. Our
+                      dedicated team is here to support you every step of the
+                      way in using our sales system, ensuring your success and satisfaction."
+                      <a href="#">links</a>
+                    </p>
+                  </div>
+                  <div class="card-footer justify-content-center">
+                    <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-twitter"></i></a>
+                    <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-instagram"></i></a>
+                    <a href="#pablo" class="btn btn-link btn-just-icon"><i class="fa fa-facebook-square"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="carousel-item">
-          <img src="/static/images/interface1.webp" class="d-block w-100" alt="...">
-          <div class="jumbotron overlay">
-            <h1>RK Sales System where excellence meets innovation</h1>
-            <p>Our system understands that success is not just about closing deals; it's about building trust and
-              forging long-lasting partnerships.</p>
-            <p><a class="btn btn-primary btn-lg" href="/login" role="button">Get Started</a></p>
+      </div>
+      <div class="section section-contacts">
+        <div class="row">
+          <div class="col-md-8 ml-auto mr-auto">
+            <h2 class="text-center title">Work with us</h2>
+            <h4 class="text-center description">"Join forces with our sales system and be a part of our success story."
+            </h4>
+            <form class="contact-form">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Your Name</label>
+                    <input type="email" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="bmd-label-floating">Your Email</label>
+                    <input type="email" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="exampleMessage" class="bmd-label-floating">Your Message</label>
+                <textarea type="email" class="form-control" rows="4" id="exampleMessage"></textarea>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4 ml-auto mr-auto text-center">
+                  <button class="btn btn-primary btn-raised">
+                    Send Message
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+  <footer class="footer text-center ">
+    <p>Made by Ropy Kevin<a href="https://demos.Tech-camp-tim.com/material-kit/index.html" target="_blank"></a>
+      by Tech-camp</p>
+  </footer>
+
+  <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"
+    integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U"
     crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"
+    integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9"
+    crossorigin="anonymous"></script>
+  <script src="/static/javascript/land.js"></script>
+
 </body>
+
 
 </html>

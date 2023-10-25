@@ -1,24 +1,17 @@
-from flask import Flask, render_template, request, redirect, session,flash, url_for
-from dbservice import get_data, insert_products, insert_sale, calculate_profit, create_user, check_email_password_match,check_email_exists
+from flask import Flask, render_template, request, redirect, session, url_for, flash
+from dbservice import get_data, insert_products, insert_sale, calculate_profit, create_user, check_email_password_match, check_email_exists
 
 app = Flask(__name__)
 app.secret_key = "Kevin254!"
 
 
-# def login_check():
-#     if session['email']!=None:
-#         return redirect(url_for("dashboard"))
-# Route for the homepage
 @app.route("/")
 def sales_system():
     return render_template("index.html")
 
-# Route for the dashboard
-
 
 @app.route("/dashboard")
 def dashboard():
-    # login_check()
     if "user_id" not in session:
         return redirect("/login")
     dates = []
@@ -29,7 +22,6 @@ def dashboard():
     return render_template("dashboard.html", dates=dates, profits=profits)
 
 
-# Route for displaying and handling product data
 @app.route("/add-product", methods=["POST"])
 def add_products():
     product_name = request.form['product_name']
@@ -43,20 +35,14 @@ def add_products():
 
 @app.route("/products")
 def products():
-    # login_check()
-
     if "user_id" not in session:
         return redirect("/login")
     products_data = get_data("products")
     return render_template("products.html", myproducts=products_data)
 
-# Route for displaying and handling sales data
-
 
 @app.route("/sales", methods=["GET", "POST"])
 def sales():
-    # login_check()
-
     if "user_id" not in session:
         return redirect("/login")
     sales_data = get_data('sales')
@@ -70,23 +56,23 @@ def add_sales():
     quantity = request.form['quantity']
     msale = (product_id, quantity)
     insert_sale(msale)
-
     return redirect('/sales')
 
 
-@app.route("/register", methods=["POST","GET"])
+@app.route("/register", methods=["POST", "GET"])
 def register():
-    full_name = request.form["full_name"]
-    email = request.form["email"]
-    password = request.form["pass"]
-    create_user(full_name, email, password)
+    if request.method == "POST":
+        full_name = request.form["full_name"]
+        email = request.form["email"]
+        password = request.form["pass"]
 
-    if not check_email_exists(email):
-        create_user(full_name, email, password)
-        return redirect('/login')
-    else:
-        flash ("Email already exists.")
-        return redirect('/login')
+        if not check_email_exists(email):
+            create_user(full_name, email, password)
+            flash("acount created successfuly","success")
+            return redirect('/login')
+        else:
+            flash("Email already exists. Please use a different email.", "error")
+    return render_template("register.html")
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -94,21 +80,36 @@ def login():
     if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
-        user_id=check_email_password_match(email, password)
+        user = check_email_password_match(email, password)
+        
+        if user:
+            user_id, full_name = user 
+            session['user_id'] = user_id
+            session['user_name'] = full_name
+            flash(f'Welcome, {full_name}')
+            return redirect(url_for("dashboard"))  
 
-        if user_id:
-            session["user_id"] = user_id
-            return redirect('/dashboard')
+        elif not check_email_exists(email):
+            flash("Email not found. Please register.")
+            return redirect(url_for("register"))
+
         else:
-            flash ("Login failed. Please check your email and password.")
+            flash("Invalid login credentials. Please try again.")
 
     return render_template("login.html")
 
 
 @app.route("/logout")
 def logout():
-    session.pop("user_id", None)
-    return redirect('/login')
+    if "user_id" in session:
+        user_id = session["user_id"]
+        user_name = session["user_name"]  
+
+        flash(f"You have been logged out, {user_name}!")
+        session.pop("user_id", None)
+        session.pop("user_name", None)  
+
+    return redirect(url_for('login')) 
 
 
 if __name__ == "__main__":

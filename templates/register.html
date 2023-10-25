@@ -56,12 +56,31 @@
             <div class="row full-height justify-content-center">
                 <div class="col-12 text-center align-self-center py-5">
                     <div class="section pb-5 pt-5 pt-sm-2 text-center">
-                        <h6 class="mb-0 pb-3"><span>Log In </span><span>Register</span></h6>
+                        <h6 class="mb-0 pb-3"><span>Register </span><span>log in</span></h6>
                         <input class="checkbox" type="checkbox" id="reg-log" name="reg-log" />
                         <label for="reg-log"></label>
                         <div class="card-3d-wrap mx-auto">
                             <div class="card-3d-wrapper">
                                 <div class="card-front">
+                                    <div class="center-wrap">
+                                        <div class="section text-center">
+                                            <form action="/register" method="post">
+                                                <h4 class="mb-3 pb-3">Register</h4>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Full Name" name="full_name" required>
+                                                </div>
+                                                <div class="form-group mt-2">
+                                                    <input type="email" class="form-control" placeholder="Email" name="email" required>
+                                                </div>
+                                                <div class="form-group mt-2">
+                                                    <input type="password" class="form-control" placeholder="Password" name="pass" required>
+                                                </div>
+                                                <button style="background-color: #ffeba7;" type="submit" class="btn mt-4" name="send">Register</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-back">
                                     <div class="center-wrap">
                                         <div class="section text-center">
                                             <h4 class="mb-4 pb-3">Log In</h4>
@@ -81,42 +100,22 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-back">
-                                    <div class="center-wrap">
-                                        <div class="section text-center">
-                                            <form action="/register" method="post">
-                                                <h4 class="mb-3 pb-3">Register</h4>
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" placeholder="Full Name"
-                                                        name="full_name" required>
-                                                </div>
-                                                <div class="form-group mt-2">
-                                                    <input type="email" class="form-control" placeholder="Email"
-                                                        name="email" required>
-                                                </div>
-                                                <div class="form-group mt-2">
-                                                    <input type="password" class="form-control" placeholder="Password"
-                                                        name="pass" required>
-                                                </div>
-                                                <button style="background-color: #ffeba7;" type="submit"
-                                                    class="btn mt-4" name="send">Register</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="flashes-container" style="border-color: blue;">
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
+        <div class="flashes-container">
+            {% with messages = get_flashed_messages() %} {% if messages %}
+            <div class="alert alert-primary" role="alert">
+                <ul class="list-unstyled">
                     {% for message in messages %}
-                    <p>{{ message }}</p>
+                    <li>{{ message }}</li>
                     {% endfor %}
                 </ul>
+            </div>
             {% endif %}
             {% endwith %}
 
