@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, session, url_for, flash
-from dbservice import get_data, insert_products, insert_sale, calculate_profit, create_user, check_email_password_match, check_email_exists
+from dbservice import get_data, insert_products, insert_sale, calculate_profit, create_user, check_email_password_match, check_email_exists,calculate_sales
 
 app = Flask(__name__)
 app.secret_key = "Kevin254!"
@@ -10,7 +10,20 @@ def sales_system():
     return render_template("index.html")
 
 
-@app.route("/dashboard")
+# @app.route("/dashboard")
+# def dashboard():
+#     if "user_id" not in session:
+#         return redirect("/login")
+#     dates = []
+#     profits = []
+#     for i in calculate_profit():
+#         dates.append(str(i[0]))
+#         profits.append(float(i[1]))
+    
+#     return render_template("dashboard.html", dates=dates, profits=profits)
+
+
+@app.route('/dashboard')
 def dashboard():
     if "user_id" not in session:
         return redirect("/login")
@@ -19,8 +32,14 @@ def dashboard():
     for i in calculate_profit():
         dates.append(str(i[0]))
         profits.append(float(i[1]))
-    return render_template("dashboard.html", dates=dates, profits=profits)
+    prodss=[]
+    total_sales=[]
 
+    for i in calculate_sales():
+        prodss.append(str(i[0]))
+        total_sales.append(str(i[1]))
+
+    return render_template('dashboard.html', product=prodss, t_sales=total_sales, dates=dates, profits=profits)
 
 @app.route("/add-product", methods=["POST"])
 def add_products():

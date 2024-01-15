@@ -59,3 +59,13 @@ def create_user(full_name, email, password):
     insert_query = "INSERT INTO users (full_name, email, password) VALUES (%s, %s, %s)"
     cursor.execute(insert_query, (full_name, email, password))
     conn.commit()
+
+def calculate_sales():
+    cursor = conn.cursor()
+    sales_query = """SELECT products.product_name,SUM(sales.Quantity) AS total_sales
+    FROM sales 
+    JOIN products ON products.product_id = sales.product_id 
+    GROUP BY products.product_name;"""
+    cursor.execute(sales_query)
+    list_sales = cursor.fetchall()
+    return list_sales
